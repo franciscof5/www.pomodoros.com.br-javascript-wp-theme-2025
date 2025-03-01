@@ -23,7 +23,7 @@
 	</div>
 </div>
 
-<div id="fullpage">
+<div id="fullpagesss">
 	
 	<div class="section" id="section0">
 		<?php

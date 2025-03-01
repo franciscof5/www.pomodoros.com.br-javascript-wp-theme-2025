@@ -27,6 +27,10 @@ add_filter('login_redirect', 'admin_default_page');
 add_action('init', 'custom_add_rewrite_rules');
 add_action('template_redirect', 'custom_template_redirect');
 
+if (!current_user_can('administrator')) {
+    add_filter('show_admin_bar', '__return_false');
+}
+
 $pages_open = array("register", "product", "br", "carrinho", "app", "news", "focus-training");
 $pages_closed = array("focus", "calendar", "ranking", "produtividade", "stats", "csv", "metas", "premios", "game", "invite", "help", "product", "tag");
 

@@ -5,7 +5,7 @@
 	<?php 
 	#style="width: 104%;left: -2%;"
 	$instance = array(
-		"title" => "Ranking (top 100)",
+		"title" => "Ranking (top 100) 2025",
 		"count" => "100",
 		"exclude_roles" => array("administrator"),#
 		"include_post_types" => array("projectimer_focus"),
