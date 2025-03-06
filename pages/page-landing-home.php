@@ -1,349 +1,562 @@
-<div id="menu" class="container-fluid">
-	<div class="row justify-content-between">
-		<div class="contem-logo">
-			<a title="<?php _e("Go to Pomodoros Blog", "sis-foca-js"); ?>" href="<?php bloginfo('url'); echo is_user_logged_in() ? '/focus' : '/'; ?>">
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/pomodoro-logo-topo.png" alt="Pomodoros">
-			</a>
-		</div>
-		<div class="c">
-			<?php if ( !is_user_logged_in() ) { ?> 
-				<a class="abrir_login btn-black" title="<?php _e("Login", "sis-foca-js"); ?>" tabindex="1">
-					<span><?php _e("Login", "sis-foca-js"); ?></span>
-				</a>
-				<a href="/register" class="btn-success" role="button" aria-pressed="true" title="<?php _e("Create your free pomodoros.com.br account", "sis-foca-js"); ?>">
-					<span><?php _e("Sign Up", "sis-foca-js"); ?></span>
-				</a>
-			<?php } else { ?>
-				<a class="" style="background:#9d3f72" title="<?php _e("Start Focus", "sis-foca-js"); ?>" href="<?php bloginfo('url'); ?>/focus/">
-					<span class="fas fa-stopwatch" aria-hidden="true"></span>
-					<?php _e("Focus", "sis-foca-js"); ?>
-				</a>
-			<?php } ?>
-		</div>
-	</div>
-</div>
 
-<div id="fullpagesss">
-	
-	<div class="section" id="section0">
-		<?php
-		$user_active_count = count_users(); //METHOD 1, only active
-		$user_count = $wpdb->get_var("SELECT COUNT(`ID`) FROM $wpdb->users;");
-		$projectimer_tags = get_terms( array(
-			'taxonomy' => 'post_tag',
-			'hide_empty' => false,
-		) );
-		$count_posts = wp_count_posts( 'projectimer_focus' );
-		$total_posts = $count_posts->publish+$count_posts->private;
-		//
-		$cities_count = get_meta_values( "post_location_city", "projectimer_focus" );
-		?>
 
-		<h2 class="f-font-title"><i class="fas fa-people-group"></i> <?php _e("Stats from Community", "sis-foca-js"); ?></h2>
-		<div class="row" style="padding:40px;">
-			<ul class="list-group stats-group col-sm-6">
-				<li class="list-group-item active">
-					<span class="badge"><?php echo /*$user_count." / ".*/$user_active_count["total_users"]; ?></span>
-					<i class="fas fa-users" aria-hidden="true"></i> &nbsp; <?php _e("Active Users", "sis-foca-js"); ?>
-				</li>
-				<li class="list-group-item active">
-					<span class="badge"><?php echo $total_posts; ?></span>
-					<i class="fas fa-check"></i> &nbsp; <?php _e("Pomodoros done", "sis-foca-js"); ?>
-				</li>
-				<li class="list-group-item active">
-					<span class="badge"><?php echo round($total_posts/2); ?> h</span>
-					<i class="fas fa-clock"></i> &nbsp; <?php _e("Time tracked", "sis-foca-js"); ?>
-				</li>
-			</ul>
-			<ul class="list-group stats-group col-sm-6">
-				<li class="list-group-item active">
-					<span class="badge"><?php echo count($projectimer_tags); ?></span>
-					<i class="fas fa-tags" aria-hidden="true"></i> &nbsp; <?php _e("Projects tags", "sis-foca-js"); ?>
-				</li>
-				<li class="list-group-item active">
-					<span class="badge"><?php echo count($cities_count); ?></span>
-					<i class="fas fa-city"></i> &nbsp; <?php _e("Cities ranked", "sis-foca-js"); ?>
-				</li>
-				<li class="list-group-item active">
-					<span class="badge">5</span>
-					<i class="fas fa-language"></i> &nbsp; <?php _e("Translations", "sis-foca-js"); ?>
-				</li>
-			</ul>
-		</div>
-		<script>
-			jQuery(document).ready(function() {
-				jQuery(".stats-group li").mouseover(function() {
-					jQuery(this).removeClass( "active" );
-				}).mouseout(function() {
-					jQuery(this).addClass( "active " );
-				});
-				jQuery("[data-toggle=popover]").popover();
-			});
-		</script>
-	</div>
+<div id="home-landing-page">
+    <div class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-lg m-3">
+        <!-- Layout com 2 colunas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Coluna Principal -->
+            <div class="col-span-1 p-6">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Relaxa e Foca</h2>
+                <p class="text-gray-700 mb-4">A chave para o sucesso é investir bem seu recurso mais valioso, seu tempo!</p>
+				<p class="text-gray-700 mb-4">Cronômetro online para tarefas e projetos, você e seu time mais produtivos do que nunca</p>
+                <p class="text-gray-700"><a class="btn btn-success" href="/register" style="font-weight: 600; padding: 10px 30px"><i class="fas fa-star"></i> Registre-se Grátis</a></p>
+            </div>
 
-	
-	<div class="section" id="section1">  
-
-		<div class="slide" id="slide0">
-			<div class="thumb-display thumb-display-black">
-				<p><i class="fas fa-calendar"></i> <?php _e("Google Calendar", "sis-foca-js"); ?></p>
-				<p class="hidden-xs"><?php _e("amazing integration", "sis-foca-js"); ?></p> 
-			</div>
-		</div>
-
-	    <div class="slide" id="slide1">
-			<div class="thumb-display thumb-display-black">
-				<p><i class="fas fa-time"></i> <?php _e("Work & Rest", "sis-foca-js"); ?></p>
-				<p class="hidden-xs"><?php _e("with Pomodoro Technique", "sis-foca-js"); ?></p> 
-			</div>
-		</div>
-
-	    <div class="slide" id="slide2">
-			<div class="thumb-display thumb-display-black">
-				<p><i class="fas fa-calendar"></i> <?php _e("Perfomance Calendar", "sis-foca-js"); ?></p>
-				<p class="hidden-xs"><?php _e("shows tasks you done", "sis-foca-js"); ?></p> 
-			</div>
-		</div>
-
-		<div class="slide" id="slide3">
-			<div class="thumb-display thumb-display-black">
-				<p><i class="fas fa-list"></i> <?php _e("Grow in Ranking", "sis-foca-js"); ?></p>
-				<p class="hidden-xs"><?php _e("and get more productive", "sis-foca-js"); ?></p> 
-			</div>
-		</div>
-
-		<div class="slide" id="slide4">
-			<div class="thumb-display thumb-display-black">
-				<p><i class="fas fa-tags"></i> &nbsp;<?php _e("Mind blown reports", "sis-foca-js"); ?></p>
-				<p class="hidden-xs"><?php _e("to check time usage", "sis-foca-js"); ?></p> 
-			</div>
-		</div>
-
-		<div class="slide" id="slide5">
-			<div class="thumb-display thumb-display-black">
-				<p><i class="fas fa-question-sign"></i> <?php _e("Open a ticket", "sis-foca-js"); ?></p>
-				<p class="hidden-xs"><?php _e("and get help", "sis-foca-js"); ?></p> 
-			</div>
-		</div>
-
-		<div class="slide" id="slide6">
-			<a title="<?php _e("Focus Training", "sis-foca-js"); ?>" href="<?php bloginfo('url'); ?>/focus-training">
-			<div class="thumb-display thumb-display-black">
-				<p><i class="fas fa-question-sign"></i> <?php _e("Focus Training", "sis-foca-js"); ?></p>
-				<p class="hidden-xs"><?php _e("Be more productive", "sis-foca-js"); ?></p> 
-			</div>
-			</a>
-		</div>
-
-	</div>
-
-	<div class="section " id="section2">
-		<div class="header-desc">
-			<h1 class="f-font-title"><?php _e("Relax and Work", "sis-foca-js"); ?></h1>
-			<p style=""><?php _e("The key to success is to invest well your most valuable asset", "sis-foca-js"); ?>:</p>
-			<p style=""><?php _e("your time", "sis-foca-js"); ?>!</p>
-			
-			<!--p style="font-weight: 600; font-size: 18px;"><?php _e("Relax and Focus: Online social time tracker for task and projects", "sis-foca-js"); ?>, 
-			<br><?php _e("get you and your team more productive than ever", "sis-foca-js"); ?></p-->
-			<a class="btn btn-success" href="/register" style="font-weight: 600; padding: 10px 30px"><i class="fas fa-star"></i> <?php _e("Get started for Free", "sis-foca-js"); ?></a>
-		</div>
-	</div>
-	
-
-	<div class="section " id="section3">
-		<h2 class="f-font-title"><i class="fas fa-bullhorn"></i> <?php _e("Testimonials", "sis-foca-js"); ?></h2>
-		<div class="col-xs-6 col-sm-6 col-md-3 testimonials-container">
-			<div class="thumbnail">
-				<p><?php _e("I will be the first in the ranking", "sis-foca-js"); ?>.</p>
-				<div class="caption">
-					<?php #echo bp_core_fetch_avatar( array( 'item_id' => 1304, 'type' => 'full' ) ) ); ?>
-					<h3><a href="#">Sérgio Rodrigues Amorin</a><?php #if(function_exists("bp_core_get_userlink")) echo bp_core_get_userlink( array('user_id' => 1304 )); ?></h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-6 col-md-3 testimonials-container">
-			<div class="thumbnail">
-				<p><?php _e("Learning is an ongoing process. We should study daily, analyze the results regularly and apply methods to improve our previous results", "sis-foca-js"); ?>.</p>
-				<div class="caption">
-					<?php  #echo bp_activity_avatar( 'user_id=' . 828 ); ?>
-					<h3><?php  echo bp_core_get_userlink(  828 ); ?></h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-6 col-md-3 testimonials-container">
-			<div class="thumbnail">
-				<p><?php _e("With Pomodoros.com.br I can have more control over my time, be more productive and perform my tasks better", "sis-foca-js"); ?>.</p>
-				<div class="caption">
-					<?php  #echo bp_activity_avatar( 'user_id=' . 2 ); ?>
-					<h3><?php  echo bp_core_get_userlink(  2 ); ?></h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-md-6 col-md-3 testimonials-container">
-			<div class="thumbnail">
-				<p><?php _e("I used Pomodoros.com.br a few years ago, every day. I was happy to know that the website came back, I hope people use it again, I'll try to get into the habit too because 'super' helped me", "sis-foca-js"); ?>! </p>
-				<div class="caption">
-					<?php  #echo bp_activity_avatar( 'user_id=' . 974 ); ?>
-					<h3><?php  echo bp_core_get_userlink(  974 ); ?></h3>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="section " id="section4">
-		<div class="brief-history">
-			<h2 class="f-font-title"><i class="fas fa-road"></i> <?php _e("Brief History", "sis-foca-js"); ?></h2>
-			<span>...
-			<a tabindex="0" class="btn btn-lg btn-default" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Initial Plans", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-offline.jpg' class='hidden-xs'><?php _e("Francisco, CEO and founder, tried a lot of pomodoros softwares and decided to build it's own", "sis-foca-js"); ?>">2010</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="Pomodoros Red" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-red.jpg' class='hidden-xs'><?php _e("First version, already online, social and async JavaScript timer, based in WordPress and BuddyPress", "sis-foca-js"); ?>">2011</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("First Growth", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-red.jpg' class='hidden-xs'><?php _e("Very promissor period, users growth based in spontaneous reviews, in blogs, no single penny expensed in marketing", "sis-foca-js"); ?>">2012</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-success" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="Pomodoros Green" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-green.jpg' class='hidden-xs'><?php _e("A lot of updates to join in a brazilian startup contest, no investors became interested", "sis-foca-js"); ?>">2013</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-success" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Second Growth", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-green.jpg' class='hidden-xs'><?php _e("Another promissor period, mouth-to-mouth and organic growth, but founder needed to stop developing system due Master course and it started became out of date", "sis-foca-js"); ?>" >2014</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-success" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Turbulency", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-green.jpg' class='hidden-xs'><?php _e("High maintenance costs, founder have no time for coding, service was still online, with growth in users, but the server was poor configured and unable to update regularly", "sis-foca-js"); ?>">2015</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Pomodoros Offline", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-offline.jpg' class='hidden-xs'><?php _e("Service went offline because founder needed to work in other activities and trying to finish Master course, lost all regular users", "sis-foca-js"); ?>">2016</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Laboratory", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-offline.jpg' class='hidden-xs'><?php _e("Founder quited Master course and start full-time operations. New server configuration, focused on scalability and shared users information, lot of tools created to speedup development and maintance, a base for future growth. The most important year, a lot of experiences was made, since there was no users, the service constantly ended up broken untill it get on track again", "sis-foca-js"); ?>">2017</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-black" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="Pomodoros Black" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-black.jpg' class='hidden-xs'><?php _e("After years offline, finally Pomodoros.com.br are back online in a new 'mobile first' version, with app for Android in Google Play Store", "sis-foca-js"); ?>">2018</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-black" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Pomodoros Global", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-black.jpg' class='hidden-xs'><?php _e("We expect that all translations are 100% ready and people all over the world join the community, first paid ads and gifts sellings in its own built-in donation store", "sis-foca-js"); ?>">2019</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-black" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Clear Real Valuation", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-black.jpg' class='hidden-xs'><?php _e("For good or for worst, the valuation of the system are clear, investors can join or leave for a just price in options", "sis-foca-js"); ?>">2020</a>
-			<!-- <a tabindex="0" class="btn btn-lg btn-default" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Societal Plan", "sis-foca-js"); ?>" data-content="<?php _e("Plans for multiple single investors to joining, options are become more valuable, at this time is expected that founder have about 15% of stock", "sis-foca-js"); ?>">2021</a> -->
-			...
-			<a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Pomodoros Offline", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-offline.jpg' class='hidden-xs'><?php _e("Offline", "sis-foca-js"); ?>">2020</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Pomodoros Offline", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-offline.jpg' class='hidden-xs'><?php _e("Offline", "sis-foca-js"); ?>">2021</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Pomodoros Offline", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-offline.jpg' class='hidden-xs'><?php _e("Offline", "sis-foca-js"); ?>">2022</a>
-			...
-			<a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="hover" data-html="true" data-placement="top" title="<?php _e("Pomodoros Offline", "sis-foca-js"); ?>" data-content="<img src='<?php bloginfo('stylesheet_directory');?>/images/pomo-versions/pomodoros-offline.jpg' class='hidden-xs'><?php _e("Offline", "sis-foca-js"); ?>">2023</a>
-			</span>
-		</div>
-	</div>
-
-	<? /*
-	<div class="section" id="section5">
-		<center><h2 class="f-font-title"><i class="fas fa-comment"></i> Blog</h2></center>
-				<?php 
-				if(function_exists('set_shared_database_schema')) {
-				    set_shared_database_schema();
-				}
-				global $wp_query;
-				$original_query = $wp_query;
-				$wp_query = null;
-				global $user_prefered_language;
-				$user_prefered_language_prefix = substr($user_prefered_language, 0,2);
-				$args = array(
-					"posts_per_page" => 3,
-					"post_type" => "post",
-					'tag' => "lang-".$user_prefered_language_prefix,
-				);
-				#var_dump("lang-".$user_prefered_language_prefix);die;
-				$wp_query = new WP_Query( $args );
-				#var_dump($wp_query);die;
-				if ( have_posts() ) : ?>
-
-					<?php while (have_posts()) : the_post(); ?>
-						<?php #if(has_tag("english")){ ?>
-						<?php do_action( 'bp_before_blog_post' ) ?>
-
-						<div class="post col-sm-4" id="post-<?php the_ID(); ?>">
-
-								<div class="contem-thumb">
-								<center>
-							    <a style="margin:0 auto;" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-							       <?php 
-
-							       if ( has_post_thumbnail() ) {
-							       		
-										the_post_thumbnail( array(500,200) );
-									}
-
-							       ?>
-							    </a>
-							    </center>
-							    </div>
-							<?php #endif;  ?>
-							<div class="author-box">
-								<?php echo get_avatar( get_the_author_meta( 'user_email' ), '60' ); ?>
-							</div>
-
-							<div class="post-content">
-								<h2 class="posttitle"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e( 'Permanent Link to', 'buddypress' ) ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-
-								<p class="date"><?php the_time("Y-m-d") ?></p>
-
-								<div class="entry">
-									<?php 
-									if(!is_single())
-									the_excerpt();
-									else
-									the_content( __( 'Read the rest of this entry &rarr;', 'buddypress' ) ); ?>
-								</div>
-
-								<p class="postmetadata"><span class="tags"><?php #the_tags( __( 'Tags: ', 'buddypress' ), ', ', '<br />'); ?></span> <span class="comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddypress' ), __( '1 Comment &#187;', 'buddypress' ), __( '% Comments &#187;', 'buddypress' ) ); ?></span></p>
-							</div>
-
+            <!-- Coluna Secundária -->
+            <div class="col-span-1 bg-gray-200 p-6 shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Entrar</h2>
+				<?php if (!is_user_logged_in()) { ?>
+				<div id="loginlogbox">
+					<?php wp_login_form(); ?>
+					<div style="margin-top:-10px;">
+						<?php do_action('wordpress_social_login'); ?>
+						<div style="margin-top: -40px;">
+							<?php do_action('bp_after_sidebar_login_form'); ?>
 						</div>
+					</div>
+				</div>
+				<?php } ?>
+            </div>
+        </div>
+    </div>
+	
+    <div id="funcionalidades" class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-lg m-3">
+    <!-- Abas -->
+    <div class="flex border-b border-gray-300 w-full overflow-x-auto px-1">
+        <!-- Aba Google Calendar -->
+        <button class="tab-button px-2 py-2 text-lg font-semibold text-gray-600 focus:ring-2  flex items-center gap-2 sm:w-auto w-full justify-center " data-tab="tab1">
+            <i class="fas fa-calendar-alt"></i> Google Calendar
+        </button>
+        <!-- Aba Timer Pomodoros -->
+        <button class="tab-button px-2 py-2 text-lg font-semibold text-gray-600 focus:ring-2  flex items-center gap-2 sm:w-auto w-full justify-center " data-tab="tab2">
+            <i class="fas fa-clock"></i> Timer Pomodoros
+        </button>
+        <!-- Aba Calendário Comunidade -->
+        <button class="tab-button px-2 py-2 text-lg font-semibold text-gray-600 focus:ring-2  flex items-center gap-2 sm:w-auto w-full justify-center " data-tab="tab3">
+            <i class="fas fa-users"></i> Calendário Comunidade
+        </button>
+        <!-- Aba Ranking e Prêmios -->
+        <button class="tab-button px-2 py-2 text-lg font-semibold text-gray-600 focus:ring-2  flex items-center gap-2 sm:w-auto w-full justify-center " data-tab="tab4">
+            <i class="fas fa-trophy"></i> Ranking e Prêmios
+        </button>
+        <!-- Aba Relatórios Fantásticos -->
+        <button class="tab-button px-2 py-2 text-lg font-semibold text-gray-600 focus:ring-2  flex items-center gap-2 sm:w-auto w-full justify-center " data-tab="tab5">
+            <i class="fas fa-chart-line"></i> Relatórios Fantásticos
+        </button>
+    </div>
 
-						<?php do_action( 'bp_after_blog_post' ) ?>
-						<?php #} ?>
-					<?php endwhile; ?>
-					<?php #the_posts_pagination(); ?>
-					<?php 
-					#plugin: f5sites-shared-posts-tables-and-uploads-folder
-					#if(function_exists("print_blog_nav_links") && !is_home()) print_blog_nav_links($post, "lang-".$user_prefered_language_prefix); ?>
-
-				<?php else : ?>
-
-					<h2 class="center"><?php _e( 'Not Found', 'buddypress' ) ?></h2>
-					<p class="center"><?php _e( 'Sorry, but you are looking for something that isn\'t here.', 'buddypress' ) ?></p>
-
-					<?php locate_template( array( 'searchform.php' ), true ) ?>
-
-				<?php endif; ?>
-	</div>
-	*/ ?>
+    <!-- Conteúdo das abas -->
+    <div class="tab-content active" id="tab1">
+        <div class="p-4">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/images/banners/gcal.jpg" alt="Imagem 1" class="w-full h-64 object-cover rounded-lg mb-4">
+            <p class="text-gray-700">Com a exportação do iCal feed, você pode visualizar seus pomodoros nos principais calendários, como Google, Apple e Outlook, permitindo integração e organização perfeitas entre suas tarefas e compromissos diários.</p>
+        </div>
+    </div>
+    <div class="tab-content" id="tab2">
+        <div class="p-4">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/images/banners/timer.jpg" alt="Imagem 2" class="w-full h-64 object-cover rounded-lg mb-4">
+            <p class="text-gray-700">O coração do Pomodoros.com.br é o timer exclusivo de pomodoros. Ele ajuda a melhorar sua produtividade ao dividir seu tempo em blocos de trabalho e descanso, otimizando o desempenho ao longo do dia.</p>
+        </div>
+    </div>
+    <div class="tab-content" id="tab3">
+        <div class="p-4">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/images/banners/calendar.jpg" alt="Imagem 3" class="w-full h-64 object-cover rounded-lg mb-4">
+            <p class="text-gray-700">A comunidade se sente mais motivada e engajada ao compartilhar seus resultados no calendário, incentivando um ambiente colaborativo e positivo para o crescimento de todos.</p>
+        </div>
+    </div>
+    <div class="tab-content" id="tab4">
+        <div class="p-4">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/images/banners/ranking.jpg" alt="Imagem 4" class="w-full h-64 object-cover rounded-lg mb-4">
+            <p class="text-gray-700">Nosso sistema de ranking único permite acompanhar seu desempenho em tempo real e ganhar prêmios conforme sua produtividade, transformando a organização de tarefas em um jogo de conquistas.</p>
+        </div>
+    </div>
+    <div class="tab-content" id="tab5">
+        <div class="p-4">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/images/banners/tasks.jpg" alt="Imagem 5" class="w-full h-64 object-cover rounded-lg mb-4">
+            <p class="text-gray-700">Com os relatórios fantásticos gerados automaticamente, você consegue acompanhar sua produtividade, identificar padrões e aprimorar a gestão do seu tempo ao longo do tempo.</p>
+        </div>
+    </div>
 </div>
 
-<center><?php if(function_exists("show_lang_options")) show_lang_options(false); ?></center>
-	
-<?php if(function_exists("show_welcome_message")) show_welcome_message(true); ?>
+<style>
+    /* Aba selecionada - Destaque */
+    .tab-button.active {
+        background-color:rgb(196, 225, 254);
+        border-bottom: 2px solid #007bff;
+        color: #007bff;
+    }
 
-<script type="text/javascript">
-	jQuery( document ).ready(function() {
-		jQuery( "#loginlogbox" ).show("fast");
-		
-		var myFullpage = new fullpage('#fullpage', {
-			afterLoad: function(anchorLink, index){
-				
-			},
-			onLeave: function(index, nextIndex, direction){
-				jQuery( "#loginlogbox" ).hide("slow");
+    /* Aba não selecionada */
+    .tab-button:not(.active) {
+        background-color: #fafafa;
+        color: #b0b0b0;
+    }
 
-			},
-			//sectionsColor: ['#000', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000', '#000'],
-			anchors: ['home', 'Funcionalidades', 'estatisticas', 'depoimentos', 'historia', 'blog'],
-			menu: '#menu',
-			navigation: true,
-			navigationPosition: 'right',
-			navigationTooltips: ['home', 'Funcionalidades', 'estatisticas', 'depoimentos', 'historia', 'blog'],
-			continuousVertical: true,
-		});
- 	
-		jQuery( ".abrir_login" ).click(function() {
-			jQuery( "#loginlogbox" ).toggle("slow");
-		});
-		jQuery( "#fullpage" ).click(function() {
-			jQuery( "#loginlogbox" ).toggle("slow");
-		});
-	});
+    /* Ajuste da largura das abas */
+    .tab-button {
+        width: 20%; /* Cada aba ocupa 20% da largura */
+        flex-shrink: 0; /* Evita que as abas encolham */
+        white-space: nowrap;
+        justify-content: flex-start;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    /* Ajustes para a área de abas, quando o tamanho da tela for maior que 640px */
+    @media (min-width: 640px) {
+        .tab-button {
+            width: 20%; /* Cada aba ocupa 20% da largura */
+        }
+    }
+
+    /* Evita que as abas empilhem e permite o scroll horizontal */
+    .tab-content {
+        display: none; /* Oculta todas as abas inicialmente */
+    }
+
+    .tab-content.active {
+        display: block; /* Exibe a aba ativa */
+    }
+
+</style>
+
+
+	<!-- <style>
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style> -->
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Definir o primeiro botão e seu conteúdo como ativos
+    const firstButton = document.querySelector('.tab-button');
+    firstButton.classList.add('active');
+    const firstTabContent = document.getElementById(firstButton.getAttribute('data-tab'));
+    firstTabContent.classList.add('active');
+
+    // Script para alternar a classe ativa
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove a classe 'active' de todas as abas
+            document.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Adiciona a classe 'active' à aba clicada
+            button.classList.add('active');
+
+            // Oculta o conteúdo de todas as abas
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Exibe o conteúdo da aba clicada
+            const tabContent = document.getElementById(button.getAttribute('data-tab'));
+            tabContent.classList.add('active');
+        });
+    });
+});
+
 </script>
+	
+    <div id="comunidades" class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-lg m-3">
+        <h2 class="text-2xl font-bold text-gray-900 text-center mb-6">📊 Estatísticas da Comunidade</h2>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div class="flex items-center p-4 bg-blue-50 rounded-lg shadow-sm">
+                <i class="fas fa-users text-blue-600 text-xl mr-3"></i>
+                <div>
+                    <span class="text-xl font-bold text-blue-600 counter" data-target="225">0</span>
+                    <p class="text-sm text-gray-700">Usuários Ativos</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center p-4 bg-green-50 rounded-lg shadow-sm">
+                <i class="fas fa-stopwatch text-green-600 text-xl mr-3"></i>
+                <div>
+                    <span class="text-xl font-bold text-green-600 counter" data-target="12997">0</span>
+                    <p class="text-sm text-gray-700">Pomodoros Feitos</p>
+                </div>
+            </div>
+
+            <div class="flex items-center p-4 bg-yellow-50 rounded-lg shadow-sm">
+                <i class="fas fa-clock text-yellow-600 text-xl mr-3"></i>
+                <div>
+                    <span class="text-xl font-bold text-yellow-600 counter" data-target="6499">0</span>
+                    <p class="text-sm text-gray-700">Tempo Cronometrado</p>
+                </div>
+            </div>
+
+            <div class="flex items-center p-4 bg-purple-50 rounded-lg shadow-sm">
+                <i class="fas fa-tags text-purple-600 text-xl mr-3"></i>
+                <div>
+                    <span class="text-xl font-bold text-purple-600 counter" data-target="564">0</span>
+                    <p class="text-sm text-gray-700">Tags dos Projetos</p>
+                </div>
+            </div>
+
+            <div class="flex items-center p-4 bg-red-50 rounded-lg shadow-sm">
+                <i class="fas fa-city text-red-600 text-xl mr-3"></i>
+                <div>
+                    <span class="text-xl font-bold text-red-600 counter" data-target="19">0</span>
+                    <p class="text-sm text-gray-700">Cidades Rankeadas</p>
+                </div>
+            </div>
+
+            <div class="flex items-center p-4 bg-indigo-50 rounded-lg shadow-sm">
+                <i class="fas fa-language text-indigo-600 text-xl mr-3"></i>
+                <div>
+                    <span class="text-xl font-bold text-indigo-600 counter" data-target="5">0</span>
+                    <p class="text-sm text-gray-700">Traduções</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll(".counter");
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute("data-target");
+                    const count = +counter.innerText;
+                    
+                    // Ajusta o incremento baseado no tamanho do número
+                    const increment = target / 100;
+                    
+                    // Tempo base de atualização (ajustável para suavidade)
+                    const time = target > 1000 ? 15 : 50;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, time);
+                    } else {
+                        counter.innerText = target; 
+                    }
+                };
+
+                updateCount();
+            });
+        });
+    </script>
+
+    <div id="historico" class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-lg m-3">
+        <div class="section" id="section4">
+            <div id="brief-history">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">
+                    <i class="fas fa-road text-blue-500 mr-2"></i> Breve Histórico
+                </h2>
+
+                <div class="relative">
+                    <!-- Botões de navegação -->
+                    <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-full shadow-lg z-10">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-full shadow-lg z-10">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Slider container -->
+                    <div id="slider" class="flex space-x-8 overflow-x-hidden scroll-smooth snap-x snap-mandatory">
+                        <!-- Evento 2010 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-blue-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2010 - Planos Iniciais</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-offline.jpg" alt="Pomodoros Offline" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Francisco, CEO e fundador, testou muitos softwares de pomodoros e decidiu construir o seu próprio, para ter registro digital das tarefas feitas.</p>
+                        </div>
+
+                        <!-- Evento 2011 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-red-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2011 - Pomodoros Red</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-red.jpg" alt="Pomodoros Red" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Primeira versão, já online, social e com cronômetro em JavaScript assíncrono, baseado em WordPress e BuddyPress.</p>
+                        </div>
+
+						<!-- Evento 2012 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-red-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2012 - Pomodoros Red</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-red.jpg" alt="Pomodoros Red" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Crescimento significativo baseado em reviews espontâneos em blogs, sem investimento em marketing.</p>
+                        </div>
+
+                        <!-- Evento 2013 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-green-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2013 - Pomodoros Green</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-green.jpg" alt="Pomodoros Green" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Muitos updates para participar de um concurso de startups no Brasil, mas sem atrair investidores.</p>
+                        </div>
+
+						<!-- Evento 2014 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-green-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2014 - Pomodoros Green</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-green.jpg" alt="Pomodoros Green" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Crescimento orgânico. Fundador parou o projeto para se dedicar ao mestrado. Serviço estável e operacional.</p>
+                        </div>
+
+						<!-- Evento 2015 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-green-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2015 - Pomodoros Green</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-green.jpg" alt="Pomodoros Green" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Alto custo de manutenção, muitas migrações e quedas do serviço. Perda rápida de usuários.</p>
+                        </div>
+
+						<!-- Evento 2016 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-yellow-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2016 - Laboratório</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-offline.jpg" alt="Pomodoros Offline" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">O serviço foi desativado devido a falta de recursos, resultando na perda de todos os usuários.</p>
+                        </div>
+
+                        <!-- Evento 2017 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-yellow-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2017 - Laboratório</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-offline.jpg" alt="Pomodoros Offline" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center"> Muitos testes e experiências, instabilidade frequente. Nova configuração de servidor, foco em escalabilidade.</p>
+                        </div>
+
+                        <!-- Evento 2018 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-black rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2018 - Pomodoros Black</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-black.jpg" alt="Pomodoros Black" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Finalmente voltamos 'mobile first', com aplicativo web e mobile. Palestras Treinamento em Foco.</p>
+                        </div>
+
+						<!-- Evento 2019 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-black rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2019 - Pomodoros Black</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-black.jpg" alt="Pomodoros Black" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Novamente fundador precisou se dedicar a projetos de terceiros e novo hiato acontece.</p>
+                        </div>
+
+                        <!-- Evento 2020 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-yellow-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2020 - Laboratório</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-offline.jpg" alt="Pomodoros Offline" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">O site estava funcionando, porém somente o fundador conseguia usar devido a bugs.</p>
+                        </div>
+
+						<!-- Evento 2021 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-yellow-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2021 - Laboratório</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-offline.jpg" alt="Pomodoros Offline" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Completa falta de recursos deixa o site parado no ar sem atualizações.</p>
+                        </div>
+
+						<!-- Evento 2022 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-yellow-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2022 - Laboratório</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-offline.jpg" alt="Pomodoros Offline" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">O site recebe apenas manutenção básica para permanecer no ar, preservando o domínio</p>
+                        </div>
+
+						<!-- Evento 2023 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-yellow-500 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2023 - Laboratório</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-offline.jpg" alt="Pomodoros Offline" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Devido a tecnologia já ultrapassada, PHP e WordPress, o pomodoros vira um problema técnico</p>
+                        </div>
+
+						<!-- Evento 2024 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-purple-600 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2024 - Pomodoros Purple</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-purple-lq.png" alt="Pomodoros Global" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">O projeto ganha atualizações dentro do contexto da consultoria de lançamento de 90 dias, projetos da f5sites</p>
+                        </div>
+
+						<!-- Evento 2025 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 mt-2 bg-purple-600 rounded-full border-4 border-white shadow-xl"></div>
+                            <div class="w-32 h-2 bg-gray-300 rounded-lg mt-2"></div>
+                            <h3 class="text-xl font-semibold text-gray-800 mt-2">2025 - Pomodoros Purple</h3>
+                            <img src="https://www.pomodoros.com.br/wp-content/themes/pomodoros-2025/images/pomo-versions/pomodoros-purple-lq.png" alt="Pomodoros Global" class="mt-2 w-full max-w-xs rounded-lg shadow-md">
+                            <p class="text-gray-600 text-center">Começa o enorme esforço de migração para um contexto tecnológico moderno e atualizações para marketing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function getItemWidth() {
+            return slider.children[0].offsetWidth + 32; // Largura do item + espaçamento (8 * 4px)
+        }
+
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: getItemWidth(), behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -getItemWidth(), behavior: 'smooth' });
+        });
+    </script>
+
+    <div id="depoimentos" class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-lg m-3">
+        <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Depoimentos</h2>
+
+        <div class="space-y-8">
+            <!-- Depoimento 1 -->
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <p class="text-xl text-gray-700 italic">"Vou ser o primeiro do ranking."</p>
+                <p class="mt-4 font-bold text-lg text-gray-800">Sérgio Rodrigues Amorin</p>
+            </div>
+
+            <!-- Depoimento 2 -->
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <p class="text-xl text-gray-700 italic">"A aprendizagem é um processo contínuo. Devemos estudar diariamente, analisar os resultados regularmente e aplicar métodos para melhorar os nossos resultados anteriores."</p>
+                <p class="mt-4 font-bold text-lg text-gray-800">Victor</p>
+            </div>
+
+            <!-- Depoimento 3 -->
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <p class="text-xl text-gray-700 italic">"Com o Pomodoros.com.br consigo ter mais controle sobre meu tempo, ser mais produtivo e realizar melhor minhas tarefas."</p>
+                <p class="mt-4 font-bold text-lg text-gray-800">Francisco Mat</p>
+            </div>
+
+            <!-- Depoimento 4 -->
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <p class="text-xl text-gray-700 italic">"Utilizava o Pomodoros.com.br há alguns anos, diariamente. Fiquei feliz de saber que o site voltou, espero que as pessoas voltem a usar, vou tentar pegar o hábito também porque 'super' me ajudava!"</p>
+                <p class="mt-4 font-bold text-lg text-gray-800">Camila Almeida Magalhães</p>
+            </div>
+        </div>
+    </div>
+
+
+<!-- <div class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Depoimentos</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="relative p-6 bg-gray-100 rounded-lg flex flex-col justify-between">
+            <div class="absolute inset-0 bg-white z-0 rounded-lg"></div>
+            <div class="relative z-10">
+                <div class="relative bg-gray-200 p-4 rounded-lg shadow-lg max-w-xs mx-auto">
+                    <p class="text-lg text-gray-700 italic">"Vou ser o primeiro do ranking."</p>
+                </div>
+                <p class="mt-4 font-bold text-lg text-gray-800">Sérgio Rodrigues Amorin</p>
+            </div>
+        </div>
+
+        <div class="relative p-6 bg-gray-100 rounded-lg flex flex-col justify-between">
+            <div class="absolute inset-0 bg-white z-0 rounded-lg"></div>
+            <div class="relative z-10">
+                <div class="relative bg-gray-200 p-4 rounded-lg shadow-lg max-w-xs mx-auto">
+                    <p class="text-lg text-gray-700 italic">"A aprendizagem é um processo contínuo. Devemos estudar diariamente, analisar os resultados regularmente e aplicar métodos para melhorar os nossos resultados anteriores."</p>
+                </div>
+                <p class="mt-4 font-bold text-lg text-gray-800">Victor</p>
+            </div>
+        </div>
+
+        <div class="relative p-6 bg-gray-100 rounded-lg flex flex-col justify-between">
+            <div class="absolute inset-0 bg-white z-0 rounded-lg"></div>
+            <div class="relative z-10">
+                <div class="relative bg-gray-200 p-4 rounded-lg shadow-lg max-w-xs mx-auto">
+                    <p class="text-lg text-gray-700 italic">"Com o Pomodoros.com.br consigo ter mais controle sobre meu tempo, ser mais produtivo e realizar melhor minhas tarefas."</p>
+                </div>
+                <p class="mt-4 font-bold text-lg text-gray-800">Francisco Mat</p>
+            </div>
+        </div>
+
+        <div class="relative p-6 bg-gray-100 rounded-lg flex flex-col justify-between">
+            <div class="absolute inset-0 bg-white z-0 rounded-lg"></div>
+            <div class="relative z-10">
+                <div class="relative bg-gray-200 p-4 rounded-lg shadow-lg max-w-xs mx-auto">
+                    <p class="text-lg text-gray-700 italic">"Utilizava o Pomodoros.com.br há alguns anos, diariamente. Fiquei feliz de saber que o site voltou, espero que as pessoas voltem a usar, vou tentar pegar o hábito também porque 'super' me ajudava!"</p>
+                </div>
+                <p class="mt-4 font-bold text-lg text-gray-800">Camila Almeida Magalhães</p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<?php
+
+/*
+ * <center><?php if(function_exists("show_lang_options")) show_lang_options(false); ?></center>
+ * if(function_exists("show_welcome_message")) show_welcome_message(true); ?>
+ *
+ * <script type="text/javascript">
+ *     jQuery( document ).ready(function() {
+ *         jQuery( "#loginlogbox" ).show("fast");
+ *
+ *         var myFullpage = new fullpage('#fullpage', {
+ *             afterLoad: function(anchorLink, index){
+ *
+ *             },
+ *             onLeave: function(index, nextIndex, direction){
+ *                 jQuery( "#loginlogbox" ).hide("slow");
+ *
+ *             },
+ *             //sectionsColor: ['#000', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000', '#000'],
+ *             anchors: ['home', 'Funcionalidades', 'estatisticas', 'depoimentos', 'historia', 'blog'],
+ *             menu: '#menu',
+ *             navigation: true,
+ *             navigationPosition: 'right',
+ *             navigationTooltips: ['home', 'Funcionalidades', 'estatisticas', 'depoimentos', 'historia', 'blog'],
+ *             continuousVertical: true,
+ *         });
+ *
+ *         jQuery( ".abrir_login" ).click(function() {
+ *             jQuery( "#loginlogbox" ).toggle("slow");
+ *         });
+ *         jQuery( "#fullpage" ).click(function() {
+ *             jQuery( "#loginlogbox" ).toggle("slow");
+ *         });
+ *     });
+ */
+?>

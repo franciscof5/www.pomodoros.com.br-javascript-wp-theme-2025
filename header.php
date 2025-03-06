@@ -1,220 +1,210 @@
-<?php global $user_prefered_language_prefix;?>
+<?php global $user_prefered_language_prefix; ?>
 <!DOCTYPE html>
 
-<head lang="<?php echo isset($user_prefered_language) ? $user_prefered_language : "pt_BR"; ?>">
-	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type');?>; charset=<?php bloginfo('charset');?>" />
+<head lang="<?php echo isset($user_prefered_language) ? $user_prefered_language : 'pt_BR'; ?>">
+	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
 	<?php
-//from plugin f5sites-smart language
-global $title_apendix;
-?>
+	// from plugin f5sites-smart language
+	global $title_apendix;
+	?>
 	<title>Pomodoros
-		<?php echo $title_apendix;wp_title(); ?>
+		<?php echo $title_apendix;
+		wp_title(); ?>
 	</title>
 
-	<?php do_action('bp_head')?>
+	<?php do_action('bp_head') ?>
 
-	<meta name="generator" content="WordPress <?php bloginfo('version');?>" /> <!-- leave this for stats -->
+	<meta name="generator" content="WordPress <?php bloginfo('version'); ?>" /> <!-- leave this for stats -->
 
 	<?php if (function_exists('bp_sitewide_activity_feed_link')): ?>
 		<link rel="alternate" type="application/rss+xml"
-			title="<?php bloginfo('name');?> | <?php _e('Site Wide Activity RSS Feed', 'buddypress')?>"
-			href="<?php bp_sitewide_activity_feed_link()?>" />
-	<?php endif;?>
+			title="<?php bloginfo('name'); ?> | <?php _e('Site Wide Activity RSS Feed', 'buddypress') ?>"
+			href="<?php bp_sitewide_activity_feed_link() ?>" />
+	<?php endif; ?>
 
 	<?php if (function_exists('bp_member_activity_feed_link') && bp_is_user()): ?>
 		<link rel="alternate" type="application/rss+xml"
-			title="<?php bloginfo('name');?> | <?php bp_displayed_user_fullname()?> | <?php _e('Activity RSS Feed', 'buddypress')?>"
-			href="<?php bp_member_activity_feed_link()?>" />
-	<?php endif;?>
+			title="<?php bloginfo('name'); ?> | <?php bp_displayed_user_fullname() ?> | <?php _e('Activity RSS Feed', 'buddypress') ?>"
+			href="<?php bp_member_activity_feed_link() ?>" />
+	<?php endif; ?>
 
 	<?php if (function_exists('bp_group_activity_feed_link') && bp_is_group()): ?>
 		<link rel="alternate" type="application/rss+xml"
-			title="<?php bloginfo('name');?> | <?php bp_current_group_name()?> | <?php _e('Group Activity RSS Feed', 'buddypress')?>"
-			href="<?php bp_group_activity_feed_link()?>" />
-	<?php endif;?>
+			title="<?php bloginfo('name'); ?> | <?php bp_current_group_name() ?> | <?php _e('Group Activity RSS Feed', 'buddypress') ?>"
+			href="<?php bp_group_activity_feed_link() ?>" />
+	<?php endif; ?>
 
 	<link rel="alternate" type="application/rss+xml"
-		title="<?php bloginfo('name');?> <?php _e('Blog Posts RSS Feed', 'buddypress')?>"
-		href="<?php bloginfo('rss2_url');?>" />
+		title="<?php bloginfo('name'); ?> <?php _e('Blog Posts RSS Feed', 'buddypress') ?>"
+		href="<?php bloginfo('rss2_url'); ?>" />
 
 	<link rel="alternate" type="application/atom+xml"
-		title="<?php bloginfo('name');?> <?php _e('Blog Posts Atom Feed', 'buddypress')?>"
-		href="<?php bloginfo('atom_url');?>" />
+		title="<?php bloginfo('name'); ?> <?php _e('Blog Posts Atom Feed', 'buddypress') ?>"
+		href="<?php bloginfo('atom_url'); ?>" />
 
-	<link rel="pingback" href="<?php bloginfo('pingback_url');?>" />
+	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
 	<!--link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet'-->
-	<?php wp_head();?>
+	<?php wp_head(); ?>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+	<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+
 </head>
 
 
 <body <?php ?>>
+<nav class="bg-gray-800 fixed top-0 left-0 w-full z-50" x-data="{ open: false, mobileMenuOpen: false }">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="absolute -inset-0.5"></span>
+          <span class="sr-only">Open main menu</span>
+          <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex shrink-0 items-center">
+          <img class="h-8 w-auto" src="<?php bloginfo('stylesheet_directory'); ?>/images/pomodoro-logo-topo.png" alt="Your Company">
+        </div>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <a href="#funcionalidades" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Funcionalidades</a>
+			<a href="#comunidades" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Comunidade</a>
+            <a href="#historico" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Histórico</a>
+			<a href="#depoimentos" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Depoimentos</a>
 
-	<?php do_action('bp_before_header')?>
+            <!-- Projects Dropdown with Alpine.js
+            <div x-data="{ open: false }" class="relative">
+              <button @click="open = !open" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                Projects
+              </button>
+              <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-md bg-gray-700 shadow-lg z-10">
+                <a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 1</a>
+                <a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 2</a>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- Profile Dropdown -->
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+          <span class="absolute -inset-1.5"></span>
+          <span class="sr-only">View notifications</span>
+          <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+          </svg>
+        </button>
 
-	<div id="contem-tudo" class="container-fluid content">
-
-		<nav class="navbar navbar-dark">
-			<a class="navbar-brand" title="<?php _e("Go to Pomodoros Blog", "sis-foca-js");?>" href="<?php bloginfo('url'); echo is_user_logged_in() ? '/focus' : '/';?>">
-				<img src="<?php bloginfo('stylesheet_directory');?>/images/pomodoro-logo-topo.png" id="pomodoros-topo"
-					alt="Pomodoros">
-			</a>
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsePommoNabar"
-				aria-controls="collapsePommoNabar" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+		<div x-data="{ open: false }" class="relative ml-3">
+		<div>
+			<!-- Botão para abrir o menu -->
+			<button @click="open = !open" type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+			<span class="absolute -inset-1.5"></span>
+			<span class="sr-only">Open user menu</span>
+			<img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
 			</button>
-
-			<div class="collapse navbar-collapse" id="collapsePommoNabar">
-				<ul class="pomoNavbar">
-
-					<span class="pomoNavbar-right icones-celular">
-						<?php if (!is_user_logged_in()) {?>
-							<li>
-								<a title="<?php _e("Login", "sis-foca-js");?>"
-									class="btn btn-transparent-dark btn-xs btn-expand abrir_login" id="login_login"
-									tabindex="1">
-										<?php _e("Login", "sis-foca-js");?>
-								</a>
-							</li>
-							<li>
-								<a href="/register" class="btn btn-success btn-xs btn-expand " role="button"
-									aria-pressed="true"
-									title="<?php _e("Create your free pomodoros.com.br account", "sis-foca-js");?>">
-										<?php _e("Sign Up", "sis-foca-js");?>
-								</a>
-							</li>
-						<?php } else {?>
-							<span class="icones-celular">
-								<li>
-									<a title="<?php _e("Start Focus", "sis-foca-js");?>"
-										href="<?php bloginfo('url');?>/focus/"
-										class="btn btn-transparent-blue btn-xs btn-expand">
-										<span class="fas fa-stopwatch" aria-hidden="true"></span>
-										<span class="d-none d-xs-block d-sm-block icon-leg">
-											<?php _e("Focus", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a title="<?php _e("View Productivity", "sis-foca-js");?>" href="<?php bloginfo('url');?>/users/<?php $current_user = wp_get_current_user(); echo $current_user->user_login?>" class="btn btn-transparent-blue btn-xs btn-expand">
-										<span class="fas fa-chart-line" aria-hidden="true"></span>
-										<span class="d-none d-xs-block d-sm-block icon-leg">
-											Stats
-											<?php //_e("Productivity", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a title="<?php _e("Colleagues list", "sis-foca-js");?>"
-										href="<?php bloginfo('url');?>/users/" alt="Amigos"
-										class="btn btn-transparent-blue btn-xs btn-expand">
-										<span class="fas fa-users" aria-hidden="true"></span>
-										<span class="d-none d-xs-block d-sm-block icon-leg">
-											<?php _e("Colleagues", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a title="<?php _e("View the most productive users Ranking", "sis-foca-js");?>"
-										href="<?php bloginfo('url');?>/ranking/"
-										class="btn btn-transparent-blue btn-xs btn-expand">
-										<span class="fas fa-sort-amount-up" aria-hidden="true"></span>
-										<span class="d-none d-xs-block d-sm-block icon-leg">
-											<?php _e("Ranking", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a title="<?php _e("Perfomance Calendar", "sis-foca-js");?>"
-										href="<?php bloginfo('url');?>/calendar/"
-										class="btn btn-transparent-blue btn-xs btn-expand">
-										<span class="fas fa-calendar-alt" aria-hidden="true"></span>
-										<span class="d-none d-xs-block d-sm-block icon-leg">
-											<?php _e("Calendar", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a title="<?php _e("View your account", "sis-foca-js");?>"
-										class="btn btn-transparent-blue btn-xs btn-expand" href="<?php bloginfo('url');?>/users/<?php $current_user = wp_get_current_user(); echo $current_user->user_login?>/settings">
-										<span class="fas fa-user-circle" aria-hidden="true"></span>
-										<span class="d-none d-xs-block d-sm-block icon-leg">
-											Conta
-											<?php //_e("My Acount", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a title="<?php _e("Open support ticket", "sis-foca-js");?>"
-										class="btn btn-transparent-blue btn-xs btn-expand"
-										href="<?php bloginfo('url');?>/help">
-										<span class="fas fa-envelope-open" aria-hidden="true"></span>
-										<span class="d-none d-xs-block d-sm-block icon-leg">
-											<?php _e("Support", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a title="<?php _e("Settings", "sis-foca-js");?>"
-										class="btn btn-transparent-blue btn-xs btn-expand abrir_settings" href="#">
-										<span class="fas fa-gear" aria-hidden="true"></span><span
-											class="d-none d-xs-block d-sm-block icon-leg">
-											Config.
-											<?php //_e("Settings", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a title="<?php _e("Focus Training", "sis-foca-js");?>"
-										class="btn btn-transparent-blue btn-xs btn-expand"
-										href="<?php bloginfo('url');?>/focus-training">
-										<span class="fas fa-graduation-cap" aria-hidden="true"></span><span
-											class="d-none d-xs-block d-sm-block icon-leg">
-											Palestra
-											<?php //_e("Focus Training", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-								<li>
-									<a title="<?php _e("Logout", "sis-foca-js");?>"
-										class="btn btn-transparent-red btn-xs btn-expand"
-										href="<?php echo wp_logout_url(); ?>">
-										<span class="fas fa-sign-out-alt" aria-hidden="true"></span>
-										<span class="d-none d-xs-block d-sm-block icon-leg">
-											<?php _e("Logout", "sis-foca-js");?>
-										</span>
-									</a>
-								</li>
-							</span>
-						<?php }?>
-					</span>
-				<ul>
-
-			</div>
-			<!--/div-->
-		</nav>
-
-		<div id="loginlogbox">
-			<?php wp_login_form();?>
-			<div style="margin-top:-10px;">
-				<?php do_action('wordpress_social_login');?>
-				<div style="margin-top: -40px;">
-					<?php do_action('bp_after_sidebar_login_form');?>
-				</div>
-			</div>
 		</div>
 
+		<!-- Menu de usuário (começa escondido com x-show) -->
+		<div x-show="open" @click.away="open = false" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" x-cloak>
+			<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+			<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+			<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+		</div>
+		</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+<div x-data="{ open: false, mobileMenuOpen: false }" :class="{ 'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }" class="sm:hidden" id="mobile-menu">
+  <div class="space-y-1 px-2 pt-2 pb-3">
+	
+    <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
+    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+
+    <!-- Projects Dropdown for Mobile -->
+	<div x-data="{ open: false }" class="relative" x-init="open = false">
+	<button @click="open = !open" class="block w-full rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+		Projects
+	</button>
+		<div x-show="open" x-transition @click.away="open = false" class="mt-2 w-full rounded-md bg-gray-700 shadow-lg z-10" x-cloak>
+		<a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 1</a>
+		<a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 2</a>
+	</div>
+	</div>
+		
+
+
+
+  </div>
+</div>
+
+
+
+</nav>
+
+
+
+
+	<?php /*
+	<div id="menu" class="container-fluid">
+		<div class="row justify-content-between">
+			<div class="contem-logo">
+				<a title="Home" href="">
+					<img src="<?php bloginfo('stylesheet_directory'); ?>/images/pomodoro-logo-topo.png" alt="Pomodoros">
+				</a>
+			</div>
+			<div>
+				<a class="" title="Funcionalidades" tabindex="1">
+					<span>Funcionalidades</span>
+				</a>
+				<a class="" title="Preço" tabindex="1">
+					<span>Preço</span>
+				</a>
+				<a class="" title="Porque usar Pomodoros.com.br" tabindex="1">
+					<span>Porque usar</span>
+				</a>
+			</div>
+			<div>
+				<?php if (!is_user_logged_in()) { ?> 
+					<a class="abrir_login btn-black" title="Login" tabindex="1">
+						<span>Login</span>
+					</a>
+					<a href="/register" class="btn-success" role="button" aria-pressed="true" title="Create your free pomodoros.com.br account">
+						<span>Free Signup</span>
+					</a>
+				<?php } else { ?>
+					<a class="" style="background:#9d3f72" title="Focus" href="/focus/">
+						<span class="fas fa-stopwatch" aria-hidden="true"></span>
+						Focus
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+	*/ ?>
+	<?php do_action('bp_before_header') ?>
+
+	<div id="main-cotainer" class="container-fluid content">
+
+		
 		<div id="settingsbox" class="row">
 			<h2 class="forte">
-				<span class="fas fa-cog" aria-hidden="true"></span><?php _e("Settings", "sis-foca-js");?>
+				<span class="fas fa-cog" aria-hidden="true"></span><?php _e('Settings', 'sis-foca-js'); ?>
 			</h2>
 
-			<h3><span class="fas fa-volume-up" aria-hidden="true"></span> <?php _e("Volume", "sis-foca-js");?></h3>			
+			<h3><span class="fas fa-volume-up" aria-hidden="true"></span> <?php _e('Volume', 'sis-foca-js'); ?></h3>			
 			<div class="row">
 				<!-- <div class="col-1">
 					<span class="fas fa-volume-up" aria-hidden="true"></span>
@@ -242,7 +232,7 @@ global $title_apendix;
 
 			<div class="row">
 				<div class="col-8">
-					<p><?php _e("Voice", "sis-foca-js");?></p>
+					<p><?php _e('Voice', 'sis-foca-js'); ?></p>
 				</div>
 				<div class="col-4">
 					<input style="float:right" id="voice_enabled" name="someSwitchOption002" type="checkbox" checked="checked">
@@ -253,35 +243,34 @@ global $title_apendix;
 				</div>
 			</div>
 			<hr />
-			<?php if (function_exists("smartlang_show_lang_options")) { ?>
+			<?php if (function_exists('smartlang_show_lang_options')) { ?>
 				<h3>Change Language</h3>
 				<div class="">
 					<p><?php smartlang_show_lang_options(true); ?></p>
 				</div>
 			<?php } ?>
-			<?php if ( bp_is_active( 'messages' ) ) { ?>
+			<?php if (bp_is_active('messages')) { ?>
 				<div class="">
 					<?php bp_message_get_notices(); /* Site wide notices to all users */ ?>
 				</div>
 			<?php } ?>
-			<h3><?php _e("Export Calendar", "sis-foca-js"); ?> (iCal)</h3>
+			<h3><?php _e('Export Calendar', 'sis-foca-js'); ?> (iCal)</h3>
 			<div class="">
-				<p class="Tahoma"><?php _e("See your pomodoros in the calendars of Google, Apple, Microsoft and others.", "sis-foca-js"); #Veja seus pomodoros nos calendários da Google, Apple, Microsoft e outros. ?></p>
-				<p><a href="/calendar" class="btn btn-primary" style="text-transform: uppercase;"><?php _e("Export Calendar", "sis-foca-js"); ?></a></p>
+				<p class="Tahoma"><?php _e('See your pomodoros in the calendars of Google, Apple, Microsoft and others.', 'sis-foca-js'); // Veja seus pomodoros nos calendários da Google, Apple, Microsoft e outros. ?></p>
+				<p><a href="/calendar" class="btn btn-primary" style="text-transform: uppercase;"><?php _e('Export Calendar', 'sis-foca-js'); ?></a></p>
 			</div>
-			<h3><?php _e("Export Worksheet", "sis-foca-js"); #Exportar Planilha ?></h3>
+			<h3><?php _e('Export Worksheet', 'sis-foca-js'); // Exportar Planilha ?></h3>
 			<div class="">
-				<p class="Tahoma"><?php _e("Have control over your data, view your pomodoros in Microsoft Excel, LibreOffice Calc and others", "sis-foca-js"); #Tenha controle sobre seus dados, visualize seus pomodoros no Microsoft Excel, LibreOffice Calc e outros ?></p>
-				<p><a href="/csv" class="btn btn-primary" style="text-transform: uppercase;"><?php _e("Export Worksheet", "sis-foca-js"); ?></a></p>
+				<p class="Tahoma"><?php _e('Have control over your data, view your pomodoros in Microsoft Excel, LibreOffice Calc and others', 'sis-foca-js'); // Tenha controle sobre seus dados, visualize seus pomodoros no Microsoft Excel, LibreOffice Calc e outros ?></p>
+				<p><a href="/csv" class="btn btn-primary" style="text-transform: uppercase;"><?php _e('Export Worksheet', 'sis-foca-js'); ?></a></p>
 			</div>
 		</div>
 
-		<?php do_action('bp_header')?>
+		<?php do_action('bp_header') ?>
 
 
-		<?php do_action('bp_after_header')?>
-		<?php do_action('bp_before_container')?>
+		<?php do_action('bp_after_header') ?>
+		<?php do_action('bp_before_container') ?>
 
 
-
-		<!--  -->
+		

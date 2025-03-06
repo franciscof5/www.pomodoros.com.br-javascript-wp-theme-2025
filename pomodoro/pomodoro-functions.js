@@ -565,7 +565,7 @@ function change_button (valueset, colorset) {
 	var button = jQuery("#action_button_id");
 	//var banner = jQuery(".navbar");
 	//var banner = jQuery(".navbar");
-	//var banner = jQuery("#contem-tudo");
+	//var banner = jQuery("#main-cotainer");
 	
 	//var button = document.getElementById("action_button_id");
 	button.val(valueset);

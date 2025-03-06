@@ -1,9 +1,9 @@
 <?php
 /*
-Template Name: Template Redirect
+Template Name: Template Redirect Closed
 */
 
-get_header();
+get_header("app");
 
 $custom_page = get_query_var('custom_page');
 

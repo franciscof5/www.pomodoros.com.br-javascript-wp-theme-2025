@@ -38,24 +38,26 @@ function custom_add_rewrite_rules() {
 	global $pages_open, $pages_closed;
 	// Páginas principais
 	foreach ($pages_closed as $page) {
-		add_rewrite_rule("^$page/?$", "index.php?custom_page=$page", 'top');
+		add_rewrite_rule("^$page/?$", "index.php?custom_page=$page&template=closed", 'top');
 	}
 
 	// Páginas abertas
 	foreach ($pages_open as $page) {
-		add_rewrite_rule("^$page/?$", "index.php?custom_page=$page", 'top');
+		add_rewrite_rule("^$page/?$", "index.php?custom_page=$page&template=open", 'top');
 	}
 }
 
 function custom_template_redirect() {
 	if (get_query_var('custom_page')) {
-        include get_template_directory() . '/custom-page-template.php';
+		$template = get_query_var('template');
+	    include get_template_directory() . '/custom-page-'.$template.'.php';
         exit;
     }
 }
 
 function custom_query_vars($vars) {
-    $vars[] = 'custom_page'; // Adiciona 'custom_page' às query vars
+    $vars[] = 'custom_page';
+	$vars[] = 'template';
     return $vars;
 }
 add_filter('query_vars', 'custom_query_vars');

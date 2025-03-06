@@ -1,13 +1,7 @@
 <?php 
-//NEW index.php, old is 404.php
-get_header("fullpage"); 
-
-// wp_enqueue_script("fullpage-js");
-// wp_enqueue_style("fullpage-css");
-// wp_enqueue_style("fullPage_examples_examples.css");
-
+get_header(); 
 
 locate_template( "pages/page-landing-home.php", true );
 
-get_footer('condensed');
+get_footer();
 ?>
