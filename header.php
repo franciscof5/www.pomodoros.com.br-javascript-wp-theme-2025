@@ -56,108 +56,141 @@
 
 
 <body <?php ?>>
+	<nav class="bg-gray-800 fixed top-0 left-0 w-full z-50" x-data="{ open: false, mobileMenuOpen: false }">
+		<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+			<div class="relative flex h-16 items-center justify-between">
+				<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+					<!-- Botão para abrir o menu mobile-->
+					<button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+						<span class="absolute -inset-0.5"></span>
+						<span class="sr-only">Abrir menu principal</span>
+						<svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+						</svg>
+					</button>
+				</div>
+				<div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+					<div class="flex shrink-0 items-center">
+						<img class="h-8 w-auto" src="<?php bloginfo('stylesheet_directory'); ?>/images/pomodoro-logo-topo.png" alt="Seu site">
+					</div>
+					<div class="hidden sm:ml-6 sm:block">
+						<div class="flex space-x-4">
+							<a href="#funcionalidades" class="rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">Funcionalidades</a>
+							<a href="#comunidades" class="rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">Comunidade</a>
+							<a href="#historico" class="rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">Histórico</a>
+							<a href="#depoimentos" class="rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">Depoimentos</a>
+						</div>
+					</div>
+				</div>
+				<!-- Dropdown de usuário -->
+				<div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+					<?php if (!is_user_logged_in()) { ?> 
+						<!-- <a class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white" title="Login" href="/focus">Login</a> -->
+						<a class="inline-block bg-green-800 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300" href="/register" title="Create your free pomodoros.com.br account">🚀 Registre-se Grátis</a>
+						
+					<?php } else { ?>
+						<a class="rounded-md bg-purple-700 px-3 py-2 text-sm font-medium text-white" title="Focus" href="/focus/">
+							<span class="fas fa-stopwatch" aria-hidden="true"></span>
+							Focar
+						</a>
+					<?php } ?>
+					<!-- <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+						<span class="absolute -inset-1.5"></span>
+						<span class="sr-only">Ver notificações</span>
+						<svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+						</svg>
+					</button> -->
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu Mobile, exibe/oculta com base no estado de mobileMenuOpen -->
+		<div x-show="mobileMenuOpen" x-transition class="sm:hidden" id="mobile-menu">
+			<div class="space-y-1 px-2 pt-2 pb-3">
+				<a href="#funcionalidades" class="block w-full rounded-md rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Funcionalidades</a>
+				<a href="#comunidades" class="block w-full rounded-md rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Comunidade</a>
+				<a href="#historico" class="block w-full rounded-md rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Histórico</a>
+				<a href="#depoimentos" class="block w-full rounded-md rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Depoimentos</a>
+				<!-- Dropdown de Projetos para Mobile
+				<div x-data="{ open: false }" class="relative">
+					<button @click="open = !open" class="block w-full rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-purple-700">Projetos</button>
+					<div x-show="open" x-transition @click.away="open = false" class="mt-2 w-full rounded-md bg-gray-700 shadow-lg z-10" x-cloak>
+						<a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 1</a>
+						<a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 2</a>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</nav>
+
+	<?php do_action('bp_before_header') ?>
+
+	<div id="main-cotainer" class="container-fluid content">
+
+		<?php do_action('bp_header') ?>
+		<?php do_action('bp_after_header') ?>
+		<?php do_action('bp_before_container') ?>
+
+<?php /*
 <nav class="bg-gray-800 fixed top-0 left-0 w-full z-50" x-data="{ open: false, mobileMenuOpen: false }">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        <!-- Mobile menu button-->
-        <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
-          <span class="absolute -inset-0.5"></span>
-          <span class="sr-only">Open main menu</span>
-          <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-        </button>
-      </div>
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-        <div class="flex shrink-0 items-center">
-          <img class="h-8 w-auto" src="<?php bloginfo('stylesheet_directory'); ?>/images/pomodoro-logo-topo.png" alt="Your Company">
-        </div>
-        <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
-            <a href="#funcionalidades" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Funcionalidades</a>
-			<a href="#comunidades" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Comunidade</a>
-            <a href="#historico" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Histórico</a>
-			<a href="#depoimentos" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Depoimentos</a>
-
-            <!-- Projects Dropdown with Alpine.js
-            <div x-data="{ open: false }" class="relative">
-              <button @click="open = !open" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-                Projects
-              </button>
-              <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-md bg-gray-700 shadow-lg z-10">
-                <a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 1</a>
-                <a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 2</a>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- Profile Dropdown -->
-      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
-          <span class="absolute -inset-1.5"></span>
-          <span class="sr-only">View notifications</span>
-          <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-          </svg>
-        </button>
-
-		<div x-data="{ open: false }" class="relative ml-3">
-		<div>
-			<!-- Botão para abrir o menu -->
-			<button @click="open = !open" type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-			<span class="absolute -inset-1.5"></span>
-			<span class="sr-only">Open user menu</span>
-			<img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-			</button>
+		<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+			<div class="relative flex h-16 items-center justify-between">
+				<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+					<!-- Botão para abrir o menu mobile-->
+					<button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+						<span class="absolute -inset-0.5"></span>
+						<span class="sr-only">Abrir menu principal</span>
+						<svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+						</svg>
+					</button>
+				</div>
+				<div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+					<div class="flex shrink-0 items-center">
+						<img class="h-8 w-auto" src="<?php bloginfo('stylesheet_directory'); ?>/images/pomodoro-logo-topo.png" alt="Seu site">
+					</div>
+					<div class="hidden sm:ml-6 sm:block">
+						<div class="flex space-x-4">
+							<a href="#funcionalidades" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Funcionalidades</a>
+							<a href="#comunidades" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Comunidade</a>
+							<a href="#historico" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Histórico</a>
+							<a href="#depoimentos" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Depoimentos</a>
+						</div>
+					</div>
+				</div>
+				<!-- Dropdown de usuário -->
+				<div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+					<button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+						<span class="absolute -inset-1.5"></span>
+						<span class="sr-only">Ver notificações</span>
+						<svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+						</svg>
+					</button>
+				</div>
+			</div>
 		</div>
 
-		<!-- Menu de usuário (começa escondido com x-show) -->
-		<div x-show="open" @click.away="open = false" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" x-cloak>
-			<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-			<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-			<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+		<!-- Menu Mobile, exibe/oculta com base no estado de mobileMenuOpen -->
+		<div x-show="mobileMenuOpen" x-transition class="sm:hidden" id="mobile-menu">
+			<div class="space-y-1 px-2 pt-2 pb-3">
+				<a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
+				<a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+				<a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+				<!-- Dropdown de Projetos para Mobile -->
+				<div x-data="{ open: false }" class="relative">
+					<button @click="open = !open" class="block w-full rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projetos</button>
+					<div x-show="open" x-transition @click.away="open = false" class="mt-2 w-full rounded-md bg-gray-700 shadow-lg z-10" x-cloak>
+						<a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 1</a>
+						<a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 2</a>
+					</div>
+				</div>
+			</div>
 		</div>
-		</div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile menu, show/hide based on menu state. -->
-<div x-data="{ open: false, mobileMenuOpen: false }" :class="{ 'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }" class="sm:hidden" id="mobile-menu">
-  <div class="space-y-1 px-2 pt-2 pb-3">
-	
-    <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
-
-    <!-- Projects Dropdown for Mobile -->
-	<div x-data="{ open: false }" class="relative" x-init="open = false">
-	<button @click="open = !open" class="block w-full rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-		Projects
-	</button>
-		<div x-show="open" x-transition @click.away="open = false" class="mt-2 w-full rounded-md bg-gray-700 shadow-lg z-10" x-cloak>
-		<a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 1</a>
-		<a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600">Submenu Item 2</a>
-	</div>
-	</div>
-		
+	</nav>
 
 
-
-  </div>
-</div>
-
-
-
-</nav>
-
-
-
-
-	<?php /*
 	<div id="menu" class="container-fluid">
 		<div class="row justify-content-between">
 			<div class="contem-logo">
@@ -193,13 +226,8 @@
 			</div>
 		</div>
 	</div>
-	*/ ?>
-	<?php do_action('bp_before_header') ?>
 
-	<div id="main-cotainer" class="container-fluid content">
-
-		
-		<div id="settingsbox" class="row">
+	<div id="settingsbox" class="row">
 			<h2 class="forte">
 				<span class="fas fa-cog" aria-hidden="true"></span><?php _e('Settings', 'sis-foca-js'); ?>
 			</h2>
@@ -251,7 +279,7 @@
 			<?php } ?>
 			<?php if (bp_is_active('messages')) { ?>
 				<div class="">
-					<?php bp_message_get_notices(); /* Site wide notices to all users */ ?>
+					<?php bp_message_get_notices();?>
 				</div>
 			<?php } ?>
 			<h3><?php _e('Export Calendar', 'sis-foca-js'); ?> (iCal)</h3>
@@ -265,12 +293,5 @@
 				<p><a href="/csv" class="btn btn-primary" style="text-transform: uppercase;"><?php _e('Export Worksheet', 'sis-foca-js'); ?></a></p>
 			</div>
 		</div>
-
-		<?php do_action('bp_header') ?>
-
-
-		<?php do_action('bp_after_header') ?>
-		<?php do_action('bp_before_container') ?>
-
-
-		
+*/ ?>
+	

@@ -136,6 +136,7 @@ input[type="range"]::-ms-fill-upper {
 	color: 	rgb(51,​ 51,​ 51);
 
 }
+
 .posttitle a {
 	font-family: motor4f;
 	font-weight: 100;
@@ -839,9 +840,11 @@ h4 {
 	color: #888;
 }
 
-a { color: #E2D693; /*#bc1800; f5sites*/ text-decoration: none;}
 
-/*.padder { 
+/*
+
+a { color: #E2D693; /*#bc1800; f5sites/ text-decoration: none;}
+.padder { 
 	width: 73%;
 	float: right;
 	padding: 15px;

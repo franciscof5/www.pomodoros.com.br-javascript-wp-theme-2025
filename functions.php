@@ -285,10 +285,6 @@ function load_scritps() {
 	#wp_enqueue_style('pomodoro-css', get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro.css", __FILE__, time());
 	#ERROR CONSOLE wp_enqueue_style('fonts-css', get_bloginfo("stylesheet_directory")."/assets/fonts/stylesheet.css", __FILE__);
 
-
-	//jquery colors
-	wp_enqueue_script("jquery-color", get_bloginfo("stylesheet_directory")."/assets/jquery.color-2.1.2.min.js");
-	
 	//alertify
 	wp_enqueue_script("alertify-js", get_bloginfo("stylesheet_directory")."/assets/alertify.min.js");
 	wp_enqueue_style('alertify-css', get_bloginfo("stylesheet_directory")."/assets/alertify.core_and_default_merged.css", __FILE__);
@@ -301,38 +297,19 @@ function load_scritps() {
 	#JA CARREGADO EM SMART LANG
 	// wp_enqueue_script("bootstrap-js", get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.js");
 	// wp_enqueue_style('bootstrap-css', get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.css", __FILE__);
-	wp_enqueue_script("bootstrap-js", "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js");
-	wp_enqueue_style('bootstrap-css', "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css");
 	
 	wp_enqueue_style("fontawesome-css", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 
-	//select2
-	wp_register_script("select2-js", get_bloginfo("stylesheet_directory")."/assets/select2/select2.full.min.js");
-	wp_register_script("select2-jsbr", get_bloginfo("stylesheet_directory")."/assets/select2/select2_locale_pt-BR.js");
-	wp_register_style('select2-css', get_bloginfo("stylesheet_directory")."/assets/select2/select2.min.css", __FILE__);
-
-	//jquery-ui
-	wp_register_script("jquery-ui-js", get_bloginfo("stylesheet_directory")."/assets/jquery-ui/jquery-ui.min.js");
-	wp_register_style('jquery-ui-css', get_bloginfo("stylesheet_directory")."/assets/jquery-ui/jquery-ui.min.css", __FILE__);
-	wp_register_style('jquery-ui-theme-css', get_bloginfo("stylesheet_directory")."/assets/jquery-ui/jquery-ui.theme.min.css", __FILE__);
-
-	//jquery-ui touchable
-	wp_register_script("jquery-ui-touhc-js", get_bloginfo("stylesheet_directory")."/assets/jquery.ui.touch-punch.min.js");
-
-	//no sleep
-	wp_register_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
-
+	
 	//
 	#wp_register_script("artyom-js", get_bloginfo("stylesheet_directory")."/assets/artyom.window.min.js");
 	#wp_enqueue_script("speakW-js", get_bloginfo("stylesheet_directory")."/assets/speakWorker.js");
 	
 	//fullpage.js for home
-	wp_enqueue_script("fullpage-js", get_bloginfo("stylesheet_directory")."/assets/fullpage.min.js");
-	wp_enqueue_style('fullpage-css', get_bloginfo("stylesheet_directory")."/assets/fullpage.min.css", __FILE__);
-	wp_enqueue_style('fullpage_homepage.css', get_bloginfo("stylesheet_directory")."/assets/fullpage_homepage.css", __FILE__, time()*rand());
+	// wp_enqueue_script("fullpage-js", get_bloginfo("stylesheet_directory")."/assets/fullpage.min.js");
+	// wp_enqueue_style('fullpage-css', get_bloginfo("stylesheet_directory")."/assets/fullpage.min.css", __FILE__);
+	// wp_enqueue_style('fullpage_homepage.css', get_bloginfo("stylesheet_directory")."/assets/fullpage_homepage.css", __FILE__, time()*rand());
 	
-
-
 	#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
 	//inter8
 	//Theme language, need to be there
