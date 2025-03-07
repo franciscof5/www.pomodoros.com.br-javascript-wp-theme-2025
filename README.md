@@ -7,13 +7,202 @@ Sistema Focalizador JavaScript é um tema de WordPress para criação de um serv
 
 Site Oficial: [Pomodoros.com.br](https://www.pomodoros.com.br) 
 
-Documentação Oficial: [F5 Sites Pomodoros Project](https://projects.f5sites.com/pomodoros.com.br) 
+Documentação Oficial: [F5 Sites Pomodoros Project](https://github.com/franciscof5/sistema-pomodoros-javascript-wp-theme-2016/) 
 
-Developd by: [Francisco Matelli Matulovic](https://www.franciscomat.com)
+Developd by: [Francisco Matelli Matulovic](https://www.franciscomatelli.com.br)
 
 ## DESCRIÇÃO
 
 Cria um servidor de Pomodoros usando o WordPress. Um post tipo 'projectimer_focus' é criado e cada usuário que termina um "pomodoro" na verdade publica um post do tipo 'projectimer_focus'.
+
+# Features
+
+* Tech - Headless / Blog / 
+* Timer - Stats / Cycler / 
+* Apps - web / mobile / desktop
+* Tools - Tasks / Calendar / Scrumodoro / Reports / Goals / Help
+* Social e Gamefy - Teams / Ranking / Tv /
+* Integrations - Calendar / Alexa / Trello
+* Settings - Multilanguages
+* Income - Ads system / Products
+
+## Tech
+- [ ] Headless
+- [ ] Blog
+- [ ] Anti SPAM
+- [ ] Organize wp theme
+
+## Timer & Rest timer
+- [x] Fazer tempo rodar por PHP em vez de JS
+  - [ ] bug: quando inicia num dispositivo, no outro quando puxa nao liga o setInterval do load_session
+- [ ] Interrupt Lost Time
+  - [ ] Web, if time is running don't save when close browser
+- [ ] Task Slider
+- [ ] Auto Cycle
+- [ ] Manual Add/Edit pomodoros
+- [ ] Session end: recapitulate cycle what you did
+  - [ ] Session Video Record at End
+- [ ] **Rest Timer**
+  - [ ] Rest Tasks
+  - [ ] Habit Counters / Interval tasks / Interval
+    - [ ] Cadastros feitos / Telefonemas
+    - [ ] Cigars
+  - [ ] Training yoga, stretch and strong
+    - [ ] Pushups
+  - [ ] Jump Rest Accumulate rest time
+  - [ ] Courses, wine taste
+  - [ ] 5 minutes youtube long videos
+  - [ ] Rest Chat
+  - [ ] Rest Mini Games
+  - [ ] Rest Yoga / Meditate / Aerobics / Sport Trainer
+  - [ ] Rest Benefits Alert When Jump
+
+## Apps
+- [ ] Mobile App
+  - [ ] Auto Interrupt When Distract
+    - [ ] Call
+    - [ ] SMS
+    - [ ] Apps
+- [ ] Desktop App
+  - [ ] Auto Turn Off Monitor on Interval
+- [ ] Web Browser Apps
+  - [ ] Blog
+  - [ ] Focus Page
+  - [ ] Calendar
+  - [ ] Ranking
+- [ ] Pomodoros arduino
+
+## Tools
+- [x] Alertas alertify
+  - [ ] Função que alerta com um div quando um usuário qualquer da comunidade terminou um pomodoro, usando ajax e setinterval
+- [ ] Burndown
+  - [ ] Scrumodoros
+  - [ ] Burndown tags
+- [ ] Calendar
+  - [ ] Custom date range
+  - [ ] Datas vestibulares e concursos
+  - [ ] URL time range
+- [ ] Todo list e Task Manager
+- [ ] Team Shared Goals
+- [ ] Reports
+  - [ ] PDF
+  - [ ] Email
+  - [ ] Teams
+  - [ ] Tags
+- [ ] User statistics stats
+- [ ] Invite member by email
+- [ ] Pomdoros TV
+- [ ] Offline
+- [ ] 24h Timer / Day Planner
+  - [ ] Day types
+  - [ ] Activity colors
+- [ ] Relógio de ponto
+- [ ] Performance Blog
+  - [ ] Ranking blog
+  - [ ] Automatic best of week
+- [ ] Life Planner
+- [ ] World Map real time
+- [ ] Freelancer Invoicer
+- [ ] Day Goals
+- [ ] Push Notification
+- [ ] Comando de voz do browser
+- [ ] Help
+  - [ ] Ergonomic
+  - [ ] Tour
+  - [ ] FAQ
+  - [ ] Tips (Dicas de produtividade)
+  - [ ] Página projeto na f5sites
+- [ ] Descubra seu perfil de aluno, teste (1 a 10)
+
+## Social & Gamify
+- [ ] XP
+  - [ ] Rascunho arquivado (game alertfy xp pontos)
+- [ ] Challenges
+  - [ ] Best in x days
+  - [ ] First to get x pomo
+- [ ] Hall of Fame
+- [ ] Incentives
+- [ ] Trophies
+- [ ] Ranking Alert
+  - [ ] Email
+  - [ ] Alertfy
+- [ ] Prizes
+  - [ ] Badges
+- [ ] Ranking
+  - [ ] Individual
+  - [ ] Teams
+  - [ ] Projects
+  - [ ] Tags
+  - [ ] Friends (somente público)
+- [ ] Stories / Painel done
+
+
+## Integrations
+- [ ] Email
+  - [ ] Log
+- [ ] Social login
+- [ ] Music, spotify
+- [ ] GA GT Google Analytics e Google Tags
+- [ ] Alexa voice command
+- [ ] API
+  - [ ] WP REST API
+- [ ] Courses on Rest
+  - [ ] Finger yoga
+  - [ ] Idioms...
+- [ ] RTM
+- [ ] Google Calendar (iCal)
+- [ ] Trello
+- [ ] Social
+  - [ ] Auto post
+- [ ] Couch
+- [ ] Data Export CSV
+- [ ] Runrun.it
+- [ ] Uservoice
+- [ ] Fnetwor Gateways
+  - [ ] Edited
+
+## Settings
+- [ ] Multilanguages
+- [ ] Category Colors
+  - [ ] Study
+  - [ ] Work...
+- [ ] Force Rest
+- [ ] Rests Jump to Lost Session
+- [ ] Tolerancy Time to Action Button
+  - [ ] 15s
+- [ ] Timezone
+- [ ] Customize Sounds
+- [ ] Hourly Rate
+- [ ] Volume
+- [ ] All Funcionalidades do Timer
+  - [ ] Edited
+- [ ] Super Gestor
+
+
+## Income
+- [ ] Doações
+- [ ] Subscriptions
+- [ ] Brindes pomodoros.com.br
+  - [ ] 24h Clock
+- [ ] Prizes partner
+- [ ] Ads mail marketing e newsletter
+- [ ] Ads system
+  - [ ] Rest
+  - [ ] Logout
+  - [ ] Audio on end
+- [ ] Eco: uma garrafa reciclada com morango por novo usuário
+
+## Design
+- [ ] Logo
+- [ ] Visit card
+- [ ] Mascot
+- [ ] Favicon
+
+## Rever
+- [ ] Mensurador Numérico de Sessão
+- [ ] Session Countdown
+- [ ] Pesquisa do Pomodoros em Parceria com prof. Tadeu Pereira
+
 
 ### CONFIGURAÇÃO
 
