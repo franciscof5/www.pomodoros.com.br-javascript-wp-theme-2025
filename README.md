@@ -113,6 +113,8 @@ Cria um servidor de Pomodoros usando o WordPress. Um post tipo 'projectimer_focu
   - [ ] Tips (Dicas de produtividade)
   - [ ] Página projeto na f5sites
 - [ ] Descubra seu perfil de aluno, teste (1 a 10)
+- [ ] Ferramenta de planejamento diário que empurra os compromissos em lote, tipo se você acordar yarde
+- [ ] usar a camera e saber se a pessoa está na posição de trabalho
 
 ## Social & Gamify
 - [ ] XP
@@ -135,6 +137,7 @@ Cria um servidor de Pomodoros usando o WordPress. Um post tipo 'projectimer_focu
   - [ ] Tags
   - [ ] Friends (somente público)
 - [ ] Stories / Painel done
+- [ ] varios apps diferentes com o mesmo back: Fazer um pezinho de tomate que vai nascendo tomate vai ficando verde vai ficando vermelho conforme vai terminando pomodoro 
 
 
 ## Integrations
