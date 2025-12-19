@@ -2909,7 +2909,7 @@ visibility: hidden; /*f5sites*/
 	margin-left: 2px;
 }
 
-/* doacao donation page template*/
+/* doacao donation page */
 .single_add_to_cart_button {
 	text-transform: uppercase;
 	font-weight: bold;
@@ -3371,7 +3371,7 @@ div.post .postmetadata {
 /**/
 
 #relogio{
-	width: 270px;
+	width: 275px;
 	margin:0 auto;
 }
 #front{
@@ -3414,6 +3414,17 @@ div.post .postmetadata {
 #secondsUpLeft, #secondsUpRight, #secondsDownLeft, #secondsDownRight,
 #secondsUpLeftBack, #secondsUpRightBack, #secondsDownLeftBack, #secondsDownRightBack{
 	width:64px;
+}
+
+#relogio-digital {
+	margin-top: 10px;
+	text-align: center;
+	font-family: monospace;
+	font-size: 84px;
+	letter-spacing: 2px;
+	color: #000;
+	font-weight: bold;
+	line-height: 1.2;
 }
 
 #mascote_float {
@@ -3748,7 +3759,7 @@ h2 i {
 }
 
 /*
-11Template1: bp-default
+11Xemplate1: bp-default
 1Templ1ate: bp-default
 1Based in: Pomodoros v2013 (/html-disabled/pomodoros.com.br);
 1ThemeName: Darwin (BuddyPress BuddyPack)
@@ -3769,7 +3780,7 @@ h2 i {
 2AuthorURI2: http://www.franciscomatelli.com
 2Templ2ate2: bp-default
 2Tags2: red, pomodoros, social, buddypress
-//REMOVIDO PARA TESTAR -> Template: bp-default
+//REMOVIDO PARA TESTAR -> Xemplate: bp-default
 
 3ThemeName: Sistema Focalizador JS (2013)
 */

@@ -39,44 +39,67 @@ wp_enqueue_script("nosleep-js");
 
 <?php #locate_template( array( 'sidebar-pomodoro-left.php' ), true ); ?>
 
-<audio id="active_sound" src="https://www.pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/crank-2.mp3" preload="auto"></audio>
-<audio id="pomodoro_completed_sound" src="https://www.pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/23193__kaponja__10trump-tel.mp3" preload="auto"></audio>
-<audio id="session_reseted_sound" src="https://www.pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/magic-chime-02.mp3" preload="auto"></audio>
+<?php $theme_uri = get_stylesheet_directory_uri(); ?>
+
+<audio id="active_sound" src="<?php echo $theme_uri; ?>/pomodoro/sounds/crank-2.mp3" preload="auto"></audio>
+<audio id="pomodoro_completed_sound" src="<?php echo $theme_uri; ?>/pomodoro/sounds/23193__kaponja__10trump-tel.mp3" preload="auto"></audio>
+<audio id="session_reseted_sound" src="<?php echo $theme_uri; ?>/pomodoro/sounds/magic-chime-02.mp3" preload="auto"></audio>
 
 <div class="container-fluid">
 
 <div class="row justify-content-md-center">
 	<div class="col-md-auto col-sm-12 col-md-6">		
 		<div id="pomodoro-relogio">							
-		<form><input type="button" value="<?php _e("loading", "sis-foca-js"); ?>..." id="action_button_id" tabindex="1" disabled="true" /></form>
+		<form>
+			<input type="button"
+			       value="<?php _e('loading', 'sis-foca-js'); ?>..."
+			       id="action_button_id"
+			       tabindex="1"
+			       disabled="true" />
+		</form>
 
 		<div id="relogio">
 			<div id="back">
 			<div id="upperHalfBack">
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
-				<img id="minutesUpLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" class="asd" /><img id="minutesUpRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
-				<img id="secondsUpLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="secondsUpRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
+				<img src="<?php echo $theme_uri; ?>/pomodoro/spacer.png" />
+				<img id="minutesUpLeftBack"  src="<?php echo $theme_uri; ?>/pomodoro/Double/Up/Left/0.png" />
+				<img id="minutesUpRightBack" src="<?php echo $theme_uri; ?>/pomodoro/Double/Up/Right/0.png"/>
+				<img id="secondsUpLeftBack"  src="<?php echo $theme_uri; ?>/pomodoro/Double/Up/Left/0.png" />
+				<img id="secondsUpRightBack" src="<?php echo $theme_uri; ?>/pomodoro/Double/Up/Right/0.png"/>
 			</div>
+
 			<div id="lowerHalfBack">
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
-				<img id="minutesDownLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="minutesDownRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
-				<img id="secondsDownLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="secondsDownRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
+				<img src="<?php echo $theme_uri; ?>/pomodoro/spacer.png" />
+				<img id="minutesDownLeftBack"  src="<?php echo $theme_uri; ?>/pomodoro/Double/Down/Left/0.png" />
+				<img id="minutesDownRightBack" src="<?php echo $theme_uri; ?>/pomodoro/Double/Down/Right/0.png" />
+				<img id="secondsDownLeftBack"  src="<?php echo $theme_uri; ?>/pomodoro/Double/Down/Left/0.png" />
+				<img id="secondsDownRightBack" src="<?php echo $theme_uri; ?>/pomodoro/Double/Down/Right/0.png" />
 			</div>
 			</div>
+
 			<div id="front">
 			<div id="upperHalf">
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
-				<img id="minutesUpLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="minutesUpRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
-				<img id="secondsUpLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="secondsUpRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
+				<img src="<?php echo $theme_uri; ?>/pomodoro/spacer.png" />
+				<img id="minutesUpLeft"  src="<?php echo $theme_uri; ?>/pomodoro/Double/Up/Left/0.png" />
+				<img id="minutesUpRight" src="<?php echo $theme_uri; ?>/pomodoro/Double/Up/Right/0.png"/>
+				<img id="secondsUpLeft"  src="<?php echo $theme_uri; ?>/pomodoro/Double/Up/Left/0.png" />
+				<img id="secondsUpRight" src="<?php echo $theme_uri; ?>/pomodoro/Double/Up/Right/0.png"/>
 			</div>
+
 			<div id="lowerHalf">
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
-				<img id="minutesDownLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="minutesDownRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
-				<img id="secondsDownLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="secondsDownRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
+				<img src="<?php echo $theme_uri; ?>/pomodoro/spacer.png" />
+				<img id="minutesDownLeft"  src="<?php echo $theme_uri; ?>/pomodoro/Double/Down/Left/0.png" />
+				<img id="minutesDownRight" src="<?php echo $theme_uri; ?>/pomodoro/Double/Down/Right/0.png" />
+				<img id="secondsDownLeft"  src="<?php echo $theme_uri; ?>/pomodoro/Double/Down/Left/0.png" />
+				<img id="secondsDownRight" src="<?php echo $theme_uri; ?>/pomodoro/Double/Down/Right/0.png" />
 			</div>
 			</div>
-		</div><!--fecha relogio-->
+		</div><!-- fecha relogio -->
 		
+		<div id="relogio-digital" aria-label="Hora atual">
+			<span id="relogio-horas">00</span>:<span id="relogio-minutos">00</span>
+		</div>
+
 		<input type="text" disabled="disabled" id="secondsRemaining_box">
 		
 		<ul id="pomolist">

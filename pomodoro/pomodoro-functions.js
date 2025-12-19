@@ -81,6 +81,9 @@ jQuery(document).ready(function ($) {
 	if(debug)
 		console.log("ready()");
 	
+	// 🔥 RELÓGIO DIGITAL HH:mm
+	atualizarRelogioDigital();
+	setInterval(atualizarRelogioDigital, 30000);
 	//
 	jQuery("#action_button_id").click(function(e) {
 		e.preventDefault();
@@ -146,6 +149,21 @@ jQuery(document).ready(function ($) {
 	//
 	start_listen_changes_on_task_form();
 });
+
+function atualizarRelogioDigital() {
+	const agora = new Date();
+
+	let horas = agora.getHours().toString().padStart(2, '0');
+	let minutos = agora.getMinutes().toString().padStart(2, '0');
+
+	const elHoras = document.getElementById('relogio-horas');
+	const elMinutos = document.getElementById('relogio-minutos');
+
+	if (elHoras && elMinutos) {
+		elHoras.textContent = horas;
+		elMinutos.textContent = minutos;
+	}
+}
 
 function start_listen_changes_on_task_form() {
 	//Check updates on task every 15s (if not on focus)
@@ -690,30 +708,58 @@ function reset_indicators_display() {
 
 //Functions to make the effect on the clock
 function flip_number(force) {
-	/*if(force) {
-		var m1_current = 9;
-		var m2_current = 9;
-		var s1_current = 9;
-		var s2_current = 9;
-	}*/
-	//alert(m1 + " cur:" + m1_current);
-	if( m2 != m2_current || force){
-		flip('minutesUpRight', 'minutesDownRight', m2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Right/');
-		m2_current = m2;
-	}
-	if( m1 != m1_current || force){	
-		flip('minutesUpLeft', 'minutesDownLeft', m1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Left/');
-		m1_current = m1;
-	}
-	if (s2 != s2_current || force){
-		flip('secondsUpRight', 'secondsDownRight', s2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Right/');
-		s2_current = s2;
-	}
-	if (s1 != s1_current || force){
-		flip('secondsUpLeft', 'secondsDownLeft', s1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Left/');
-		s1_current = s1;
-	}
+
+    const upRight   = pomodorosData.themeUrl + '/pomodoro/Double/Up/Right/';
+    const downRight = pomodorosData.themeUrl + '/pomodoro/Double/Down/Right/';
+    const upLeft    = pomodorosData.themeUrl + '/pomodoro/Double/Up/Left/';
+    const downLeft  = pomodorosData.themeUrl + '/pomodoro/Double/Down/Left/';
+
+    if (m2 != m2_current || force) {
+        flip('minutesUpRight', 'minutesDownRight', m2, upRight, downRight);
+        m2_current = m2;
+    }
+
+    if (m1 != m1_current || force) {
+        flip('minutesUpLeft', 'minutesDownLeft', m1, upLeft, downLeft);
+        m1_current = m1;
+    }
+
+    if (s2 != s2_current || force) {
+        flip('secondsUpRight', 'secondsDownRight', s2, upRight, downRight);
+        s2_current = s2;
+    }
+
+    if (s1 != s1_current || force) {
+        flip('secondsUpLeft', 'secondsDownLeft', s1, upLeft, downLeft);
+        s1_current = s1;
+    }
 }
+
+// function flip_number(force) {
+// 	/*if(force) {
+// 		var m1_current = 9;
+// 		var m2_current = 9;
+// 		var s1_current = 9;
+// 		var s2_current = 9;
+// 	}*/
+// 	//alert(m1 + " cur:" + m1_current);
+// 	if( m2 != m2_current || force){
+// 		flip('minutesUpRight', 'minutesDownRight', m2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Right/');
+// 		m2_current = m2;
+// 	}
+// 	if( m1 != m1_current || force){	
+// 		flip('minutesUpLeft', 'minutesDownLeft', m1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Left/');
+// 		m1_current = m1;
+// 	}
+// 	if (s2 != s2_current || force){
+// 		flip('secondsUpRight', 'secondsDownRight', s2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Right/');
+// 		s2_current = s2;
+// 	}
+// 	if (s1 != s1_current || force){
+// 		flip('secondsUpLeft', 'secondsDownLeft', s1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Left/');
+// 		s1_current = s1;
+// 	}
+// }
 
 function flip (upperId, lowerId, changeNumber, pathUpper, pathLower){
 	//var upperBackId = upperId+"Back";

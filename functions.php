@@ -31,7 +31,9 @@ if (!current_user_can('administrator')) {
     add_filter('show_admin_bar', '__return_false');
 }
 
+global $pages_open;
 $pages_open = array("register", "product", "br", "carrinho", "app", "news", "focus-training");
+global $pages_closed;
 $pages_closed = array("focus", "calendar", "ranking", "produtividade", "stats", "csv", "metas", "premios", "game", "invite", "help", "product", "tag");
 
 function custom_add_rewrite_rules() {
@@ -325,7 +327,7 @@ function load_scritps() {
 		$user_prefered_language==$_SESSION["user_prefered_language"];
 	} else {
 		if($user_prefered_language=="" || $user_prefered_language)
-			$user_prefered_language=="en_US";
+			$user_prefered_language="en_US";
 	}
 	if($user_prefered_language=="US")
 		$user_prefered_language="en_US";
@@ -347,6 +349,14 @@ function load_scritps() {
 	// Register the script
 	//wp_register_script( 'some_handle', 'path/to/myscript.js' );
 	wp_register_script("pomodoros-js", get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro-functions.js", __FILE__, time());
+
+	wp_localize_script(
+        'pomodoros-js',
+        'pomodorosData',
+        [
+            'themeUrl' => get_stylesheet_directory_uri()
+        ]
+    );
 
 	// Localize the script with new data
 	$localized_array = array(

@@ -56,7 +56,7 @@
 
 	<?php do_action('bp_before_header') ?>
 
-	<div id="main-cotainer" class="main-cotainer-app container-fluid content">
+	<div id="main-cotainer-app" class="main-cotainer-app container-fluid content">
 
 		<nav class="navbar navbar-dark">
 			<a class="navbar-brand" title="<?php _e('Go to Pomodoros Blog', 'sis-foca-js'); ?>" href="/">
@@ -202,16 +202,19 @@
 			<!--/div-->
 		</nav>
 
-		<div id="loginlogbox">
-			<?php wp_login_form(); ?>
-			<div style="margin-top:-10px;">
-				<?php do_action('wordpress_social_login'); ?>
-				<div style="margin-top: -40px;">
-					<?php do_action('bp_after_sidebar_login_form'); ?>
+		
+		<?php if (!is_user_logged_in()) { ?>
+			<div id="loginlogbox">
+				<?php wp_login_form(); ?>
+				<div style="margin-top:-10px;">
+					<?php do_action('wordpress_social_login'); ?>
+					<div style="margin-top: -40px;">
+						<?php do_action('bp_after_sidebar_login_form'); ?>
+					</div>
 				</div>
 			</div>
-		</div>
-
+		<?php } ?>
+		
 		<div id="settingsbox" class="row">
 			<h2 class="forte">
 				<span class="fas fa-cog" aria-hidden="true"></span><?php _e('Settings', 'sis-foca-js'); ?>
